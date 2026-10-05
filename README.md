@@ -5,13 +5,12 @@ A custom Electron shell for DeepSeek Harness with Windows Start Menu integration
 ## Features
 
 - **Electron Shell**: Wraps DeepSeek Harness WebUI in a native Windows desktop app
-- **Windows Start Menu Integration**: Proper Start Menu shortcut with embedded icon
+- **Windows Integration**: Start Menu and desktop shortcuts
 - **Plugin Sync Fix**: Resolves account plugin loading errors
 - **Download Handling**: Allows chat history export while blocking self-update installer
 - **Launch Options**: 
-  - Batch launcher (`启动 DeepSeek Harness.bat`)
-  - VBScript launcher (no console window)
-  - Compiled EXE launcher with embedded icon
+  - Direct `electron.exe` launch (recommended)
+  - Portable EXE built with `electron-builder`
 
 ## Project Structure
 
@@ -117,6 +116,25 @@ This generates `assets/icon-validated.ico` with multiple sizes (16x16 to 256x256
    ```
 
 3. Make changes to `main.js` or `preload.js`
+
+## Building Portable EXE
+
+```bash
+npm install
+npm run build:win
+```
+
+Output: `dist/DeepSeek-Harness-Portable-0.1.0.exe`
+
+## GitHub Release Signing
+
+This project uses [sigstore](https://www.sigstore.dev/) for free code signing on GitHub Actions. When a tag is pushed, GitHub Actions will:
+
+1. Build the portable EXE
+2. Sign it with sigstore (free for open source projects)
+3. Create a GitHub Release with the signed EXE
+
+No manual signing or certificates required.
 
 ## License
 
