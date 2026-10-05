@@ -1,0 +1,42 @@
+﻿# Dependencies
+node_modules/
+dist/
+*.log
+
+# Build outputs
+dist/
+out/
+build/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Local config
+*.local
+.env
+
+# Logs
+*.log
+dsh-shell.log
+launcher-debug.log
+dsh-launcher.log
+
+# Test files
+dsh-test-*.log
+launcher-test.log
+
+# Reports
+EXE-LAUNCHER-FIX-REPORT.md
+START-MENU-ICON-FIX-REPORT.md
+
+# Python
+__pycache__/
+*.pyc

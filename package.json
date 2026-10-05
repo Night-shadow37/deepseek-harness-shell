@@ -1,0 +1,65 @@
+{
+  "name": "deepseek-harness-shell",
+  "version": "0.1.0",
+  "private": false,
+  "description": "Custom Electron shell for DeepSeek Harness with Windows Start Menu integration",
+  "main": "main.js",
+  "scripts": {
+    "start": "..\\.dsh\\dsh-orb\\electron-runtime\\electron.exe .",
+    "build:win": "electron-builder --win --x64",
+    "dist": "electron-builder",
+    "setup": "python make_ico.py && powershell -ExecutionPolicy Bypass -File setup\\create-shortcut.ps1",
+    "ico": "python make_ico.py"
+  },
+  "keywords": [
+    "deepseek",
+    "electron",
+    "desktop",
+    "ai",
+    "chat"
+  ],
+  "author": "DeepSeek Harness Shell Contributors",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/deepseek-harness-shell.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/deepseek-harness-shell/issues"
+  },
+  "homepage": "https://github.com/yourusername/deepseek-harness-shell#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "electron": "^44.0.0",
+    "electron-builder": "^24.9.1"
+  },
+  "build": {
+    "appId": "com.deepseek.harness-shell",
+    "productName": "DeepSeek Harness",
+    "icon": "assets/icon.ico",
+    "files": [
+      "main.js",
+      "preload.js",
+      "assets/**/*",
+      "web-frontend/**/*",
+      "make_ico.py"
+    ],
+    "directories": {
+      "output": "dist"
+    },
+    "electronDist": "C:\\Users\\xingg\\.dsh\\dsh-orb\\electron-runtime",
+    "electronVersion": "44.0.0",
+    "win": {
+      "target": [
+        {
+          "target": "portable",
+          "arch": ["x64"]
+        }
+      ],
+      "publisherName": "DeepSeek"
+    },
+    "portable": {
+      "artifactName": "DeepSeek-Harness-Portable-${version}.exe"
+    }
+  }
+}

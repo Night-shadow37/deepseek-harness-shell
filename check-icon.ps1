@@ -1,0 +1,27 @@
+Add-Type -AssemblyName System.Drawing
+$ico = [System.Drawing.Icon]::FromHandle(([System.Drawing.Bitmap]::new('D:\dsh\harness-shell\assets\icon.png').GetHicon()))
+$bmp = $ico.ToBitmap()
+Write-Host ('Icon size: ' + $bmp.Width + 'x' + $bmp.Height)
+Write-Host ('Icon sizes in icon.ico:')
+$stream = [System.IO.File]::OpenRead('D:\dsh\harness-shell\assets\icon.ico')
+$reader = New-Object System.IO.BinaryReader($stream)
+$reserved = $reader.ReadUInt16()
+$type = $reader.ReadUInt16()
+$count = $reader.ReadUInt16()
+Write-Host ('Count: ' + $count)
+for ($i = 0; $i -lt $count; $i++) {
+    $width = $reader.ReadByte()
+    $height = $reader.ReadByte()
+    $colors = $reader.ReadByte()
+    $reserved = $reader.ReadByte()
+    $planes = $reader.ReadUInt16()
+    $bitCount = $reader.ReadUInt16()
+    $size = $reader.ReadUInt32()
+    $offset = $reader.ReadUInt32()
+    $w = if ($width -eq 0) { 256 } else { $width }
+    Write-Host ('  ' + $w + 'x' + $height + ' (' + $bitCount + 'bit)')
+}
+$reader.Close()
+$stream.Close()
+$ico.Dispose()
+$bmp.Dispose()
